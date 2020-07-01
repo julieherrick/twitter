@@ -19,6 +19,7 @@
 		6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790820BCC04D0085BC29 /* TimelineViewController.m */; };
 		79EFE58424AA9D6000B47421 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EFE58324AA9D6000B47421 /* User.m */; };
 		79EFE58724AA9F1000B47421 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EFE58624AA9F1000B47421 /* Tweet.m */; };
+		79EFE58A24ABC23300B47421 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EFE58924ABC23300B47421 /* TweetCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		79EFE58324AA9D6000B47421 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		79EFE58524AA9F1000B47421 /* Tweet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		79EFE58624AA9F1000B47421 /* Tweet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		79EFE58824ABC23300B47421 /* TweetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TweetCell.h; path = twitter/Views/TweetCell.h; sourceTree = SOURCE_ROOT; };
+		79EFE58924ABC23300B47421 /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TweetCell.m; path = twitter/Views/TweetCell.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 		6AD278FF20BCBF280085BC29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79EFE58824ABC23300B47421 /* TweetCell.h */,
+				79EFE58924ABC23300B47421 /* TweetCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EFE58A24ABC23300B47421 /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				79EFE58424AA9D6000B47421 /* User.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,

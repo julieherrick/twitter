@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 // MARK: Properties
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
+@property (nonatomic, strong) NSString *profileUrl; // profile image URL
 // add other properties
 
 // MARK: Methods
