@@ -15,7 +15,8 @@
     if (self) {
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
-        self.profileUrl = dictionary[@"profile_image_url_https"];
+        NSString *blurryUrl =dictionary[@"profile_image_url_https"];
+        self.profileUrl = [blurryUrl stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         // initialize other properties
     }
     return self;
