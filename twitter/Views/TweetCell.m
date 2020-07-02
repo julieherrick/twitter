@@ -85,8 +85,19 @@
             }
         }];
     } else {
-        // unlike tweet
-        NSLog(@"Tweet is already liked");
+        self.tweet.favorited = NO;
+        self.tweet.favoriteCount -= 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+            }
+        }];
     }
 }
 
@@ -108,8 +119,19 @@
             }
         }];
     } else {
-        // unlike tweet
-        NSLog(@"Tweet is already retweeted");
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+            }
+        }];
     }
 }
 

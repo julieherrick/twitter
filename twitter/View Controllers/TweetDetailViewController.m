@@ -52,21 +52,17 @@
     if (self.tweet.favorited) {
         //red
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red.png"] forState:UIControlStateNormal];
-        self.favoriteLabel.textColor = UIColor.redColor;
     } else {
         // gray
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon.png"] forState:UIControlStateNormal];
-        self.favoriteLabel.textColor = UIColor.grayColor;
     }
     
     if (self.tweet.retweeted) {
         //red
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
-        self.retweetLabel.textColor = UIColor.greenColor;
     } else {
         // gray
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
-        self.retweetLabel.textColor = UIColor.grayColor;
     }
     
 }
@@ -88,8 +84,19 @@
             }
         }];
     } else {
-        // unlike tweet
-        NSLog(@"Tweet is already liked");
+         self.tweet.favorited = NO;
+               self.tweet.favoriteCount -= 1;
+               
+               [self refreshData];
+               
+               [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+                   if(error){
+                        NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+                   }
+                   else{
+                       NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+                   }
+               }];
     }
 }
 
@@ -111,8 +118,19 @@
             }
         }];
     } else {
-        // unlike tweet
-        NSLog(@"Tweet is already retweeted");
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+            }
+        }];
     }
 }
 
