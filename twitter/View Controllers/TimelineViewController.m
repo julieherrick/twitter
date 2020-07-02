@@ -11,6 +11,8 @@
 #import "TweetCell.h"
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
@@ -94,21 +96,8 @@
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.tweet = tweet;
-    
-    // setting properties
-    cell.nameLabel.text = tweet.user.name;
-    cell.username.text = [@"@" stringByAppendingString:tweet.user.screenName];
-    cell.tweetText.text = tweet.text;
-    cell.dateLabel.text = tweet.createdAtString;
-    
-    if (tweet.user.profileUrl) {
-        NSURL *url = [NSURL URLWithString:tweet.user.profileUrl];
-        [cell.profileImage setImageWithURL:url];
-    }
-    
-    cell.retweetLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
-    cell.favoriteLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+    cell = [cell loadTweet:cell tweet:tweet];
+
     
     return cell;
 }
@@ -117,5 +106,13 @@
     return self.tweets.count;
 }
 
+- (IBAction)onLogout:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    [[APIManager shared] logout];
+}
 
 @end
