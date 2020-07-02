@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "APIManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -29,7 +30,7 @@
     cell.nameLabel.text = tweet.user.name;
     cell.username.text = [@"@" stringByAppendingString:tweet.user.screenName];
     cell.tweetText.text = tweet.text;
-    cell.dateLabel.text = tweet.createdAtString;
+    cell.dateLabel.text = tweet.date.shortTimeAgoSinceNow;
     
     if (tweet.user.profileUrl) {
         NSURL *url = [NSURL URLWithString:tweet.user.profileUrl];
